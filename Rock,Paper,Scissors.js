@@ -90,7 +90,7 @@ function game() {
       formattedUserSelection,
       computerPlay()
     );
-    if (prompt(roundResultMessage === "" && roundWinner === "")){
+    if (roundResultMessage === "" && roundWinner === ""){
       i--;
     } else {
       prompt(`Round ${i + 1}: ${roundResultMessage}`);
@@ -101,7 +101,7 @@ function game() {
       }
     }
   }
-  if (prompt(playerScore === computerScore)) {
+  if (prompt(playerScore === computerScore)){
     gameResultMessage = "The game was a tie";
   } else {
     gameResultMessage =
