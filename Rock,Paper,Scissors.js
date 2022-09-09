@@ -1,4 +1,4 @@
-window.prompt("Lets play a game!");
+alert("Lets play a game!");
 
 function computerPlay() {
   let playerOptions = ["Rock", "Paper", "Scissors"];
