@@ -1,18 +1,16 @@
-let choices = ["Rock", "Paper", "Scissors"];
+const options = ["Rock", "Paper", "Scissors"];
 
 function computerPlay() {
   //Random is used to generate a random number between 0 and 1, and scaled to the length of the options array
   //Math.floor is used to round down to the nearest whole number as the output of the random function is a decimal
-  let random = Math.floor(Math.random() * choices.length);
-  return choices[random];
+  let random = Math.floor(Math.random() * options.length);
+  return options[random];
+  //In the return(line 7) it will return the options according whatever option was chosen//
 }
 
 function playRound(playerSelection, computerSelection) {
-  //In case user enters an invalid data type
-  if (
-    typeof playerSelection !== "string" ||
-    typeof computerSelection !== "string"
-  ) {
+  //If there is an invalid data entered the message on (line 13) will be returned//
+  if (playerSelection !== "string" || computerSelection !== "string") {
     return "Invalid input";
   }
 
@@ -23,19 +21,20 @@ function playRound(playerSelection, computerSelection) {
   computerSelection =
     computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
 
-  //Validation in case user enters a string out of the list of choices
-  if (!choices.includes(playerSelection)) {
+  /*If the user enters an option that is not in the array on (line 1), 
+  then we return the message on (line 26)*/
+  if (!options.includes(playerSelection)) {
     return `${playerSelection} is NOT a valid input`;
   }
 
   //List containing the sceanrios where the user wins
-  listOfTruth = [
+  listOfPlayerWins = [
     playerSelection == "Rock" && computerSelection == "Scissors",
     playerSelection == "Paper" && computerSelection == "Rock",
     playerSelection == "Scissors" && computerSelection == "Paper",
   ];
 
-  if (listOfTruth.includes(true)) {
+  if (listOfPlayerWins.includes(true)) {
     playerScore += 1;
     roundCounter += 1;
     return `You Win! ${playerSelection} beats ${computerSelection}.`;
@@ -59,6 +58,7 @@ function game() {
   computerScore = 0;
   roundCounter = 1;
   prevoiusRound = 1;
+  //loops//
   for (let i = 0; i < 5; i++) {
     userInput = prompt("Enter your choice of Rock, Paper, Scissors!");
     console.log(playRound(userInput, computerPlay()));
