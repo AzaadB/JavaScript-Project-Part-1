@@ -1,30 +1,79 @@
-/* step1: Use build-in function - prompt() to return user's choice and store it in the variable - userChoice. */
-let userChoice = prompt('please choose one from rock, paper or scissors, and type into the box below');
-/* step2: in case user's input has different cases, to be more specific, uses .toLowerCase() convert all return values into lower cases. */
-userChoice = userChoice.toLowerCase();
-/* step3: building an array, declared as choiceStack to let computer choose from */
-let choiceStack = ['paper', 'rock', 'scissors'];
-/* step4: make use of two JS build-in functions - Math.random()(to generate random number between 0-1), multiply it by 3, because we have 3 choices in our choiceStack array; and pass it into Math.floor()(to return the largest integer less than or equal to a given number) */
-let randomNum = Math.floor(Math.random() * 3);
-/* step5: pass the generated number as an index to choiceStack, to get the element in the array and store it in another variable - computerChoice */
-let computerChoice = choiceStack[randomNum];
-/* step6: log the result on the console */
-console.log(`Your choice is ${userChoice}, the computer's choice is ${computerChoice}.`);
-/* final step: Compare each choice with if/else statement, then print the result on the console */
-if (userChoice === computerChoice){
-console.log("Tie!");
-}else if (userChoice === 'paper' && computerChoice === 'rock'){
-console.log("You win!");
-}else if (userChoice === 'rock' && computerChoice === 'scissors'){
-console.log("You win!");
-}else if (userChoice === 'scissors' && computerChoice === 'rock'){
-console.log("You lose!");
-}else if (userChoice === 'rock' && computerChoice === 'paper'){
-console.log("You lose!");
-}else if (userChoice === 'paper' && computerChoice === 'scissors'){
-console.log("You lose!");
-}else if (userChoice === 'scissors' || computerChoice === 'paper'){
-console.log("You win!");
-}else{
-console.log("Invalid input, please try again");
+let choices = ["Rock", "Paper", "Scissors"];
+
+function computerPlay() {
+  //Random is used to generate a random number between 0 and 1, and scaled to the length of the options array
+  //Math.floor is used to round down to the nearest whole number as the output of the random function is a decimal
+  let random = Math.floor(Math.random() * choices.length);
+  return choices[random];
 }
+
+function playRound(playerSelection, computerSelection) {
+  //In case user enters an invalid data type
+  if (
+    typeof playerSelection !== "string" ||
+    typeof computerSelection !== "string"
+  ) {
+    return "Invalid input";
+  }
+
+  playerSelection = playerSelection.toLowerCase();
+  computerSelection = computerSelection.toLowerCase();
+  playerSelection =
+    playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
+  computerSelection =
+    computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
+
+  //Validation in case user enters a string out of the list of choices
+  if (!choices.includes(playerSelection)) {
+    return `${playerSelection} is NOT a valid input`;
+  }
+
+  //List containing the sceanrios where the user wins
+  listOfTruth = [
+    playerSelection == "Rock" && computerSelection == "Scissors",
+    playerSelection == "Paper" && computerSelection == "Rock",
+    playerSelection == "Scissors" && computerSelection == "Paper",
+  ];
+
+  if (listOfTruth.includes(true)) {
+    playerScore += 1;
+    roundCounter += 1;
+    return `You Win! ${playerSelection} beats ${computerSelection}.`;
+  } else if (playerSelection == computerSelection) {
+    roundCounter += 1;
+    return "Tie!";
+  } else {
+    computerScore += 1;
+    roundCounter += 1;
+    return `You Lose! ${computerSelection} beats ${playerSelection}.`;
+  }
+}
+
+let playerScore;
+let computerScore;
+let roundCounter;
+let prevoiusRound;
+
+function game() {
+  playerScore = 0;
+  computerScore = 0;
+  roundCounter = 1;
+  prevoiusRound = 1;
+  for (let i = 0; i < 5; i++) {
+    userInput = prompt("Enter your choice of Rock, Paper, Scissors!");
+    console.log(playRound(userInput, computerPlay()));
+    while (prevoiusRound == roundCounter) {
+      userInput = prompt("Enter your choice of Rock, Paper, Scissors!");
+      console.log(playRound(userInput, computerPlay()));
+    }
+    prevoiusRound++;
+    console.log(
+      `Round: ${
+        prevoiusRound - 1
+      } \nCurrent Score: Player ${playerScore} vs. Computer ${computerScore}`
+    );
+  }
+  alert(`Final Score\n Player: ${playerScore} \n Computer: ${computerScore}`);
+}
+
+game();
