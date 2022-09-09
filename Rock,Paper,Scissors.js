@@ -21,7 +21,9 @@ the round has finished and who the winner is in a variable called roundScore (li
       if (computerSelection === "Rock") {
         roundResult.roundResultMessage = `Tie! You both played ${playerSelection}`;
       } else if (computerSelection === "Paper") {
-        roundResult.roundResultMessage = `You lose! ${computerSelection} beats ${playerSelection}`;
+        window.prompt(
+          (roundResult.roundResultMessage = `You lose! ${computerSelection} beats ${playerSelection}`)
+        );
         roundResult.roundWinner = "computer";
         /*In this else if statement(line 23) is saying if the computer had to choose paper,
       the player would lose(line 24) and the computer will be the winner(line 25)*/
@@ -33,17 +35,23 @@ the round has finished and who the winner is in a variable called roundScore (li
       break;
     case "Paper":
       if (computerSelection === "Rock") {
-        roundResult.roundResultMessage = `You win! ${playerSelection} beats ${computerSelection}`;
+        prompt(
+          (roundResult.roundResultMessage = `You win! ${playerSelection} beats ${computerSelection}`)
+        );
         roundResult.roundWinner = "player";
         /*In this case(line 34) the option is "paper" in the if(line 35),
         is saying if the computer chose rock and the player stuck with paper, 
         the player will win the round(line 37)*/
       } else if (computerSelection === "Paper") {
-        roundResult.roundResultMessage = `Tie! You both played ${playerSelection}`;
+        prompt(
+          (roundResult.roundResultMessage = `Tie! You both played ${playerSelection}`)
+        );
         /*In this else if statement(line 41), the computer and player both chose paper,
         the message on (line 42) will outputed*/
       } else if (computerSelection === "Scissors") {
-        roundResult.roundResultMessage = `You lose! ${computerSelection} beats ${playerSelection}`;
+        prompt(
+          (roundResult.roundResultMessage = `You lose! ${computerSelection} beats ${playerSelection}`)
+        );
         roundResult.roundWinner = "computer";
         /*In this else if statement(line 45), the computer chose scissors and the player chose paper, 
         then the message on (line 46) will outputed and the computer will win the round(line 47)*/
@@ -51,25 +59,29 @@ the round has finished and who the winner is in a variable called roundScore (li
       break;
     case "Scissors":
       if (computerSelection === "Rock") {
-        roundResult.roundResultMessage = `You lose! ${computerSelection} beats ${playerSelection}`;
+        prompt(
+          (roundResult.roundResultMessage = `You lose! ${computerSelection} beats ${playerSelection}`)
+        );
         roundResult.roundWinner = "computer";
         /*In this case(line 52) the option is "scissors" in the if(line 53),
         is saying if the computer chose rock and the player stuck with scissors, 
         the message on (line 54) will be outputed,
         and player will lose the round and the computer will be the winner(line 55)*/
       } else if (computerSelection === "Paper") {
-        roundResult.roundResultMessage = `You win! ${playerSelection} beats ${computerSelection}`;
+        
+        prompt(roundResult.roundResultMessage = `You win! ${playerSelection} beats ${computerSelection}`);
         roundResult.roundWinner = "player";
         /*In this else if statement(line 60), the computer chose rock and the player
         chose scissors, the message on (line 61) will outputed and the player will win the round(line 62)*/
       } else if (computerSelection === "Scissors") {
-        roundResult.roundResultMessage = `Tie! You both played ${playerSelection}`;
+        
+        prompt(roundResult.roundResultMessage = `Tie! You both played ${playerSelection}`);
         /*In this else if statement(line 63), the computer and player both
         chose scissors, the message on (line 66) will outputed*/
       }
       break;
     default:
-      console.log("You did not enter a valid option!");
+      prompt("You did not enter a valid option!");
   }
   return roundResult;
 }
