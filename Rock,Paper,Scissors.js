@@ -1,98 +1,30 @@
-function computerPlay() {
-  let choices = ["Rock", "Paper", "Scissors"];
-  return choices[Math.floor(Math.random() * choices.length)];
+/* step1: Use build-in function - prompt() to return user's choice and store it in the variable - userChoice. */
+let userChoice = prompt('please choose one from rock, paper or scissors, and type into the box below');
+/* step2: in case user's input has different cases, to be more specific, uses .toLowerCase() convert all return values into lower cases. */
+userChoice = userChoice.toLowerCase();
+/* step3: building an array, declared as choiceStack to let computer choose from */
+let choiceStack = ['paper', 'rock', 'scissors'];
+/* step4: make use of two JS build-in functions - Math.random()(to generate random number between 0-1), multiply it by 3, because we have 3 choices in our choiceStack array; and pass it into Math.floor()(to return the largest integer less than or equal to a given number) */
+let randomNum = Math.floor(Math.random() * 3);
+/* step5: pass the generated number as an index to choiceStack, to get the element in the array and store it in another variable - computerChoice */
+let computerChoice = choiceStack[randomNum];
+/* step6: log the result on the console */
+console.log(`Your choice is ${userChoice}, the computer's choice is ${computerChoice}.`);
+/* final step: Compare each choice with if/else statement, then print the result on the console */
+if (userChoice === computerChoice){
+console.log("Tie!");
+}else if (userChoice === 'paper' && computerChoice === 'rock'){
+console.log("You win!");
+}else if (userChoice === 'rock' && computerChoice === 'scissors'){
+console.log("You win!");
+}else if (userChoice === 'scissors' && computerChoice === 'rock'){
+console.log("You lose!");
+}else if (userChoice === 'rock' && computerChoice === 'paper'){
+console.log("You lose!");
+}else if (userChoice === 'paper' && computerChoice === 'scissors'){
+console.log("You lose!");
+}else if (userChoice === 'scissors' || computerChoice === 'paper'){
+console.log("You win!");
+}else{
+console.log("Invalid input, please try again");
 }
-
-let playerSelection = prompt("choose Rock,Paper or Scissors");
-
-let computerSelection = computerPlay();
-
-function playRound(playerSelection, computerSelection) {
-  //player chooses rock//
-  if (
-    playerSelection.toUpperCase() === "ROCK" &&
-    computerSelection === "Paper"
-  ) {
-    return "You lose,Paper beats Rock!";
-  } else if (
-    playerSelection.toUpperCase() === "ROCK" &&
-    computerSelection === "Rock"
-  ) {
-    return "It's a tie.";
-  } else if (
-    playerSelection.toUpperCase() === "ROCK" &&
-    computerSelection === "Scissors"
-  ) {
-    return "You win,Rock beats Scissors!";
-  }
-  //player chooses scissors//
-  if (
-    playerSelection.toUpperCase() === "SCISSORS" &&
-    computerSelection === "Rock"
-  ) {
-    return "You lose,Rock beats Scissors!";
-  } else if (
-    playerSelection.toUpperCase() === "SCISSORS" &&
-    computerSelection === "Scissors"
-  ) {
-    return "It's a tie.";
-  } else if (
-    playerSelection.toUpperCase() === "SCISSORS" &&
-    computerSelection === "Paper"
-  ) {
-    return "You win, Scissors beats paper!";
-  }
-  //player chooses paper//
-  if (
-    playerSelection.toUpperCase() === "PAPER" &&
-    computerSelection === "Scissors"
-  ) {
-    return "You lose,Scissors beats Paper!";
-  } else if (
-    playerSelection.toUpperCase() === "PAPER" &&
-    computerSelection === "Paper"
-  ) {
-    return "It's a tie.";
-  } else if (
-    playerSelection.toUpperCase() === "PAPER" &&
-    computerSelection === "Rock"
-  ) {
-    return "You win, Paper beats Rock!";
-  }
-}
-
-function game() {
-  // Created game function for five rounds
-  let playerScore = 0; // Variable that starts score from 0
-  let computerScore = 0; // Variable that starts score from 0
-  let gameResultMessage; // Variable for the message result
-  for (let i = 0; i < 5; i++) {
-    // Created a for loop to repeat the rounds five times
-    let userSelection = prompt(
-      `Round ${i + 1} - Please choose rock, paper or scissors.`
-    ); // Variable that prompts user to enter their choice
-    let formattedUserSelection =
-      userSelection.charAt(0).toUpperCase() +
-      userSelection.slice(1).toLowerCase(); // Input rock paper scissors in any format. Whatever the input is converted to lowercase to prevent any errors.
-    let roundResult = playRound(formattedUserSelection, computerPlay());
-    console.log(roundResult[0]);
-
-    if (roundResult[1] === "player") {
-      playerScore += 1; // Adds one to score when player wins a round
-    } else if (roundResult[1] === "computer") {
-      computerScore += 1; // Adds one to score when computer wins a round
-    }
-  }
-
-  if (playerScore > computerScore) {
-    // A message which shows result of the winner and the total scores of each player
-    gameResultMessage = `\nCongratulations! You won the game! \nPlayer Score: ${playerScore} Computer Score: ${computerScore}`;
-  } else if (playerScore < computerScore) {
-    gameResultMessage = `\nSorry! You lost the game! \nPlayer Score: ${playerScore} Computer Score: ${computerScore}`;
-  } else {
-    gameResultMessage = "\nThe game was a tie";
-  }
-  console.log(gameResultMessage);
-}
-
-game();
