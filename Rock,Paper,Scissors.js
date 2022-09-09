@@ -32,7 +32,7 @@ the round has finished and who the winner is in a variable called roundScore (li
       }
       break;
     case "Paper":
-      if (prompt(computerSelection === "Rock")) {
+      if (computerSelection === "Rock") {
         roundResult.roundResultMessage = `You win! ${playerSelection} beats ${computerSelection}`;
         roundResult.roundWinner = "player";
         /*In this case(line 34) the option is "paper" in the if(line 35),
@@ -50,7 +50,7 @@ the round has finished and who the winner is in a variable called roundScore (li
       }
       break;
     case "Scissors":
-      if (prompt(computerSelection === "Rock")) {
+      if (computerSelection === "Rock") {
         roundResult.roundResultMessage = `You lose! ${computerSelection} beats ${playerSelection}`;
         roundResult.roundWinner = "computer";
         /*In this case(line 52) the option is "scissors" in the if(line 53),
