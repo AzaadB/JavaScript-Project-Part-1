@@ -21,14 +21,15 @@ the round has finished and who the winner is in a variable called roundScore (li
       if (computerSelection === "Rock") {
         roundResult.roundResultMessage = `Tie! You both played ${playerSelection}`;
       } else if (computerSelection === "Paper") {
-        window.prompt(
+        prompt(
           (roundResult.roundResultMessage = `You lose! ${computerSelection} beats ${playerSelection}`)
         );
         roundResult.roundWinner = "computer";
         /*In this else if statement(line 23) is saying if the computer had to choose paper,
       the player would lose(line 24) and the computer will be the winner(line 25)*/
       } else if (computerSelection === "Scissors") {
-        roundResult.roundResultMessage = `You win! ${playerSelection} beats ${computerSelection}`;
+        
+        prompt(roundResult.roundResultMessage = `You win! ${playerSelection} beats ${computerSelection}`);
         roundResult.roundWinner = "player";
         //In this else if statement(line 28) the winner will be the player due to rock beating scissors//
       }
@@ -105,7 +106,7 @@ function game() {
     if (roundResultMessage === "" && roundWinner === "") {
       i--;
     } else {
-      console.log(`Round ${i + 1}: ${roundResultMessage}`);
+      prompt(`Round ${i + 1}: ${roundResultMessage}`);
       if (roundWinner === "player") {
         playerScore += 1;
       } else if (roundWinner === "computer") {
@@ -121,7 +122,7 @@ function game() {
         ? `\nCongratulations! You won the game! \nPlayer Score: ${playerScore} Computer Score: ${computerScore}`
         : `\nSorry! You lost the game! \nPlayer Score: ${playerScore} Computer Score: ${computerScore}`;
   }
-  console.log(`END OF THE GAME! ${gameResultMessage}`);
+  prompt(`END OF THE GAME! ${gameResultMessage}`);
 }
 
 game();
