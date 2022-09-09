@@ -18,7 +18,7 @@ the round has finished and who the winner is in a variable called roundScore (li
     /*In this first case(line 20) if statement, the computer and player both chose rock,
     the message on (line 22) will be outputed*/
     case "Rock":
-      if (prompt(computerSelection === "Rock")) {
+      if (computerSelection === "Rock"){
         roundResult.roundResultMessage = `Tie! You both played ${playerSelection}`;
       } else if (prompt(computerSelection === "Paper")) {
         roundResult.roundResultMessage = `You lose! ${computerSelection} beats ${playerSelection}`;
